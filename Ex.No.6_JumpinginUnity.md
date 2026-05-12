@@ -1,6 +1,6 @@
 # Ex.No: 6  Implementation of Jumping  behaviour- Unity
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### DATE: 12/05/2026                                                                            
+### REGISTER NUMBER : 212223240094
 ### AIM: 
 To write a program to simulate the process of jumping in Unity.
 ### Algorithm:
@@ -25,11 +25,13 @@ Your cube should only jump when touching the ground
 ```
 using UnityEngine;
 
-public class PlayerJump : MonoBehaviour
+// This line prevents the error by forcing the component to exist
+[RequireComponent(typeof(Rigidbody))]
+public class jumping_behavior : MonoBehaviour
 {
     private Rigidbody rb;
     public float jumpForce = 5f;
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,20 +39,22 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) )
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            
+            // The null check 'if (rb != null)' is a good habit to prevent crashes
+            if (rb != null) 
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
         }
     }
-
-   
 }
 ```
 ### Output:
 
 
 
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/2f6ba0dd-baf6-4181-8540-c08d625aa366" />
 
 
 
